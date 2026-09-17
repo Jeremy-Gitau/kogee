@@ -24,4 +24,17 @@ class KnowledgeGraph {
         getEdgesFrom(from)
             .filter { it.relation == relation }
             .map { it.to }
+
+    fun follow(
+        from: String,
+        relations: List<String>,
+    ): List<String> {
+        var current = listOf(from)
+
+        for (relation in relations) {
+            current = current.flatMap { follow(from = it, relation = relation) }
+        }
+
+        return current
+    }
 }

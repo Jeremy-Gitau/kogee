@@ -14,4 +14,15 @@ class GraphTraversalTest {
 
         assertEquals(listOf("customer:123"), result)
     }
+
+    @Test
+    fun `follow chains multiple relations across hops`() {
+        val graph = KnowledgeGraph()
+        graph.addEdge(Edge(from = "order:9821", relation = "PAID_WITH", to = "payment:9821"))
+        graph.addEdge(Edge(from = "payment:9821", relation = "HAS_TRANSACTION", to = "transaction:TX92"))
+
+        val result = graph.follow(from = "order:9821", relations = listOf("PAID_WITH", "HAS_TRANSACTION"))
+
+        assertEquals(listOf("transaction:TX92"), result)
+    }
 }
