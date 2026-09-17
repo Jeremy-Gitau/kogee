@@ -13,4 +13,14 @@ class KnowledgeGraphTest {
 
         assertEquals(node, graph.getNode("order:9821"))
     }
+
+    @Test
+    fun `graph returns edges added from a given node`() {
+        val graph = KnowledgeGraph()
+        val edge = Edge(from = "order:9821", relation = "CREATED_BY", to = "customer:123")
+
+        graph.addEdge(edge)
+
+        assertEquals(listOf(edge), graph.getEdgesFrom("order:9821"))
+    }
 }
