@@ -16,4 +16,12 @@ class KnowledgeGraph {
     }
 
     fun getEdgesFrom(id: String): List<Edge> = edges[id] ?: emptyList()
+
+    fun follow(
+        from: String,
+        relation: String,
+    ): List<String> =
+        getEdgesFrom(from)
+            .filter { it.relation == relation }
+            .map { it.to }
 }
