@@ -23,4 +23,14 @@ class KnowledgeGraphTest {
 
         assertEquals(listOf(edge), graph.getEdgesFrom("order:9821"))
     }
+
+    @Test
+    fun `remember stores a node the same way addNode does`() {
+        val graph = KnowledgeGraph()
+        val node = Node(id = "order:9821", type = "Order")
+
+        graph.remember(node)
+
+        assertEquals(node, graph.getNode("order:9821"))
+    }
 }

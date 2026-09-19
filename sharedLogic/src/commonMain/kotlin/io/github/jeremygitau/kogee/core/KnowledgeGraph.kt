@@ -9,6 +9,10 @@ class KnowledgeGraph {
         nodes[node.id] = node
     }
 
+    fun remember(node: Node) {
+        addNode(node)
+    }
+
     fun getNode(id: String): Node? = nodes[id]
 
     fun addEdge(edge: Edge) {
