@@ -10,4 +10,11 @@ class NodeTest {
         assertEquals("node1", node.id)
         assertEquals("value1", node.type)
     }
+
+    @Test
+    fun `node can store and retrieve a property`() {
+        val node = Node(id = "payment:9821", type = "Payment", properties = mapOf("status" to "failed"))
+
+        assertEquals("failed", node.properties["status"])
+    }
 }
