@@ -33,4 +33,11 @@ class KnowledgeGraphTest {
 
         assertEquals(node, graph.getNode("order:9821"))
     }
+
+    @Test
+    fun `getNode returns null for an id that was never added`() {
+        val graph = KnowledgeGraph()
+
+        assertEquals(null, graph.getNode("order:does-not-exist"))
+    }
 }
