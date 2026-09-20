@@ -1,5 +1,13 @@
 package io.github.jeremygitau.kogee.core
 
+/**
+ * An in-memory store of [Node]s and [Edge]s, with basic traversal support.
+ *
+ * This is the core, storage-level API — [remember] is a friendlier alias for
+ * [addNode], kept separate so a richer "remember" behavior (e.g. automatic
+ * extraction) can be added later without changing what [addNode] guarantees.
+ */
+
 class KnowledgeGraph {
     private val nodes = mutableMapOf<String, Node>()
 
