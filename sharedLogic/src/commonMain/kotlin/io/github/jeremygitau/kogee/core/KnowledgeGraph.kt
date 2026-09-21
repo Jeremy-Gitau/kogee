@@ -49,4 +49,30 @@ class KnowledgeGraph {
 
         return current
     }
+
+    /**
+     * Returns the ids of every node reachable from [from] within [maxHops] hops,
+     * following any relation. A node already visited is never revisited, so cycles
+     * in the graph cannot cause this to loop forever.
+     */
+    fun neighborhood(
+        from: String,
+        maxHops: Int,
+    ): Set<String> {
+        val visited = mutableSetOf(from)
+        var frontier = listOf(from)
+
+        repeat(maxHops) {
+            val next =
+                frontier
+                    .flatMap { getEdgesFrom(it).map { edge -> edge.to } }
+                    .filter { it !in visited }
+
+            visited.addAll(next)
+            frontier = next
+        }
+
+        visited.remove(from)
+        return visited
+    }
 }
